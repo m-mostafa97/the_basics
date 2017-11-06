@@ -1,0 +1,183 @@
+{% extends 'header' %}
+	{% block content %}
+	<!-- Set up your HTML -->
+	<div class="container slider-container">
+		<div class="row">
+			<!-- ///////////  the wide bar  ///////////-->
+			<div class="topnav col-xs-12 col-md-12">
+				<h4 class="topnav-text">أختارنا لك</h4>
+			</div>
+		</div>
+		<br>
+		<div class="owl-carousel owl-theme">
+			{% set counter = 1 %} {% for post in posts %} {% if counter
+			<=5 %} <div class="item" style='max-height: 270px; over-flow: hidden'>
+				<figure class="snip1577">
+					<img src="{{post.avatar}}" alt="sample99" style="height: 200px; width: 100%" />
+					<figcaption>
+						<h3>إقرأ المزيد</h3>
+					</figcaption>
+					<a href="/{{post.id}}"></a>
+				</figure>
+				<a href="/{{post.id}}">
+					<h5>{{post.title}}</h5>
+				</a>
+		</div>
+		{% set counter = (counter + 1) %} {% endif %} {% endfor %}
+
+	</div>
+	</div>
+	<br><br>
+	<!--////////////// content//////////////-->
+	<div class="container">
+		<div class="content">
+			<div class="row">
+				<!-- ///////////  the wide bar  ///////////-->
+				<div class="topnav col-xs-12 col-md-12">
+					<h4 class="topnav-text">آخر المواضيع</h4>
+				</div>
+			</div>
+			<br>
+			<!-- ///////////  the lift coulmn ///////////-->
+			<div class="row">
+				<div class="col-md-4">
+					<div class="row">
+						<div class="left">
+							<div class="alert alert-success" role="alert">الموضوع الأكثر مشاهده هذا الاسبوع</div>
+							<figure class="snip1577">
+								<img src="{{selectPost.avatar}}" />
+								<figcaption>
+									<h3>إقرأ المزيد</h3>
+								</figcaption>
+								<a href="/{{selectPost.id}}"></a>
+							</figure>
+							<p>{{selectPost.title}}</p>
+						</div>
+						<br>
+						<div class="left ">
+							<div class="mail tetx-center">
+								<i class="fa fa-4x fa-pencil" aria-hidden="true"></i><br><br>
+								<h3>
+									أفضل مدون هذا الشهر
+								</h3>
+								<h4>{{selectUser.fname}} &nbsp; {{selectUser.lname}}</h4>
+								<img src="{{selectUser.avatar}}" height="150px" width="120px">
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- ///////////  the right coulmn ///////////-->
+				<div class="col-sm-12 col-md-8">
+					<div class="row">
+						<!-- /////////// post ///////////-->
+						{% for post in posts %}
+						<div class="post">
+							<div class="images col-md-5">
+								<figure class="snip1551">
+									<img height="242px" width="337" src="{{post.avatar}}" />
+									<figcaption>
+										<h3>أقرأ المزيد</h3>
+									</figcaption>
+									<a href="/{{post.id}}"></a>
+								</figure>
+							</div>
+							<div class="post-content col-md-7">
+								<h2 class="lead"> <a href="/{{post.id}}">{{post.title}}</a></h2>
+								<i class="fa fa-user fa-md" aria-hidden="true"> {{post.fname}} &nbsp; {{post.lname}} </i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<i class="fa fa-md fa-clock-o" aria-hidden="true"> &nbsp; {{post.updated_at}}</i>
+								<h5 style="overflow: -webkit-paged-y; max-height: 105px; word-wrap: break-word;">{{post.content}}</h5>
+								<a href='/{{post.id}}'>
+									<div class="btn btn-primary">إقرأ المزيد</div>
+								</a>
+							</div>
+						</div>
+						<br> {% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<!--////////////// pagination //////////////-->
+	<div class="container text-center">
+		<div class="row">
+			<nav aria-label="Page navigation ">
+				<ul class="pagination">
+					{% if category %}
+					
+						{% if currentPage > 1 %}
+						<li>
+							<a href="/?category={{category}}&page={{currentPage - 1}}" aria-label="Previous">
+								<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
+						{% endif %}
+						{% for i in range(1, num+1) %}
+						<li><a href="/?category={{category}}&page={{i}}">{{i}}</a></li>
+						{% endfor %}
+
+						{% if lastPage != currentPage %}
+						<li>
+							<a href="/?category={{category}}&page={{currentPage + 1}}" aria-label="Next">
+						 <span aria-hidden="true">  &laquo;</span>
+						 </a>
+						</li>
+						{% endif %}
+			
+			
+					{% else %}
+						{% if currentPage > 1 %}
+						<li>
+							<a href="/?page={{currentPage}}" aria-label="Previous">
+								<span aria-hidden="true">&raquo;</span>
+							</a>			
+						</li>
+						{% endif %}
+						{% for i in range(1, num+1) %}
+						<li><a href="/?page={{i}}">{{i}}</a></li>
+						{% endfor %}
+						{% if lastPage != currentPage %}
+						<li>
+							<a href="/?page={{currentPage + 1}}" aria-label="Next">
+						 <span aria-hidden="true">  &laquo;</span>
+						 </a>
+						</li>
+						{% endif %}
+	
+					{% endif %}
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!--////////////// footer//////////////-->
+	<div class="contain most footer row">
+		<div class="container">
+			<div class="text-center">
+				<div class="col-sm-6 col-md-6 lead">
+					<h6>لنكن على تواصل</h6>
+					<img src="images/facebook.svg" height="50px" width="50px">
+					<img src="images/linkedin.svg" height="50px" width="50px">
+					<img src="images/twitter.svg" height="50px" width="50px">
+					<img src="images/google-plus.svg" height="50px" width="50px">
+				</div>
+				<div class="col-sm-6 col-md-6 text-t"> <span>الرئيسيه - من نحن - السياسه والخصوصيه - عنوان الشركه</span>
+					<br> <span>جميع الحقوق محفوظه للشركه 2017</span>
+					<br> <span class="nnn">إنضم كشريك - إنضم كمحاضر </span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div>
+		<!--MY jquery FILE-->
+		<script src="js/jquery-3.2.0.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+		<!--Bootstrap-->
+		<script src="js/bootstrap.min.js"></script>
+		<!--MY PLUGINS FILES-->
+		<script src="js/script.js"></script>
+		<script src="js/owl.carousel.min.js"></script>
+	</div>
+</body>
+
+</html>
+{% endblock %}

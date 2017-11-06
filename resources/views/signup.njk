@@ -1,0 +1,109 @@
+{% extends 'header' %}
+{% block content %}
+       <!--////////////// log in & out  //////////////-->
+     <div class="container">
+    <div class="create create2">
+        <div class="form">
+     
+      
+        <div id="signup">   
+          <h1>سجل عضويه جديده</h1>
+            
+          
+          {{ form.open({action: 'UserController.signup', files: true}) }}
+             {{ csrfField }}
+			{% if avatarError %}
+			<div class="alert alert-danger">{{avatarError}}</div>
+			{% endif %}
+            {% if old('errors') %}
+              <div class="alert alert-danger">
+                {% for error in old('errors') %}
+                  <li> {{ error.message }} </li>
+                {% endfor %}
+              </div>
+            {% endif %}
+          <div class="top-row">
+            <div class="field-wrap">
+              <label>
+                الاسم الأول<span class="req">*</span>
+              </label>
+              <input type="text" required autocomplete="off" name="fname" />
+            </div>
+        
+            <div class="field-wrap">
+              <label>
+                الأسم الاخير<span class="req">*</span>
+              </label>
+              <input type="text"required autocomplete="off" name='lname'/>
+            </div>
+          </div>
+
+          <div class="field-wrap">
+            <label>
+              البريد الإلكترونى<span class="req">*</span>
+            </label>
+            <input type="email"required autocomplete="off" name='email'/>
+          </div>
+            <div class="field-wrap">
+            <label>
+              الصورة الشخصية<span class="req">*</span>
+            </label>
+            {{ form.file('avatar') }}
+          </div>
+          
+          <div class="field-wrap">
+            <label>
+              رقمك السرى<span class="req">*</span>
+            </label>
+            <input type="password"required autocomplete="off" name='password'/>
+          </div>
+          
+          <button type="submit" class="button button-block">تسجيل</button>
+          
+          {{ form.close() }}
+
+        </div>
+      
+	</div> <!-- /form -->
+        
+        
+    </div>
+   </div>
+  
+ 
+
+
+
+
+ <!--////////////// footer//////////////-->
+      <div class="contain most footer row">
+         <div class="container">
+            <div class="text-center">
+               <div class="col-sm-6 col-md-6 lead">
+                  <h6>لنكن على تواصل</h6>
+                  <img src="images/facebook.svg" height="50px" width="50px">
+                  <img src="images/linkedin.svg" height="50px" width="50px">
+                  <img src="images/twitter.svg" height="50px" width="50px">
+                  <img src="images/google-plus.svg" height="50px" width="50px">
+               </div>
+               <div class="col-sm-6 col-md-6 text-t"> <span>الرئيسيه - من نحن - السياسه والخصوصيه - عنوان الشركه</span>
+                  <br> <span>جميع الحقوق محفوظه للشركه 2017</span>
+                  <br> <span>إنضم كشريك - إنضم كمحاضر </span>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div>
+         <!--MY jquery FILE-->
+         <script src="js/jquery-3.2.0.min.js"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+         <!--Bootstrap-->
+         <script src="js/bootstrap.min.js"></script>
+         <!--MY PLUGINS FILES-->
+         <script src="js/script.js"></script>
+         <script src="js/owl.carousel.min.js"></script>
+          
+      </div>
+   </body>
+</html>
+{% endblock %}

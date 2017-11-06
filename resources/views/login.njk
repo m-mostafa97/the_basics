@@ -1,0 +1,79 @@
+{% extends 'header' %}
+	{% block content %}
+	<!--////////////// log in & out  //////////////-->
+	<div class="container">
+		<div class="create create2">
+			<div class="form">
+
+
+				<div id="login">
+					<h1>شرفت ياخويا</h1>
+
+					{{ form.open({action: 'UserController.login'}) }} {{ csrfField }} {% if e %}
+					<div class="alert alert-danger">{{e}}</div>
+					<div class="alert alert-danger">{{error}}</div>
+					{% endif %}
+					<div class="field-wrap">
+						<label>
+              البريد الإلكترونى<span class="req">*</span>
+            </label>
+						<input type="email" required autocomplete="on" name='email' />
+					</div>
+
+					<div class="field-wrap">
+						<label>
+              الباسوورد<span class="req">*</span>
+            </label>
+						<input type="password" required autocomplete="off" name='password' />
+					</div>
+
+					<button type="submit" class="button button-block">تسجيل دخول</button> {{ form.close() }}
+
+				</div>
+
+
+			</div>
+			<!-- /form -->
+
+
+		</div>
+	</div>
+
+
+
+
+
+
+	<!--////////////// footer//////////////-->
+	<div class="contain most footer row">
+		<div class="container">
+			<div class="text-center">
+				<div class="col-sm-6 col-md-6 lead">
+					<h6>لنكن على تواصل</h6>
+					<img src="images/facebook.svg" height="50px" width="50px">
+					<img src="images/linkedin.svg" height="50px" width="50px">
+					<img src="images/twitter.svg" height="50px" width="50px">
+					<img src="images/google-plus.svg" height="50px" width="50px">
+				</div>
+				<div class="col-sm-6 col-md-6 text-t"> <span>الرئيسيه - من نحن - السياسه والخصوصيه - عنوان الشركه</span>
+					<br> <span>جميع الحقوق محفوظه للشركه 2017</span>
+					<br> <span>إنضم كشريك - إنضم كمحاضر </span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div>
+		<!--MY jquery FILE-->
+		<script src="js/jquery-3.2.0.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+		<!--Bootstrap-->
+		<script src="js/bootstrap.min.js"></script>
+		<!--MY PLUGINS FILES-->
+		<script src="js/script.js"></script>
+		<script src="js/owl.carousel.min.js"></script>
+
+	</div>
+</body>
+
+</html>
+{% endblock %}

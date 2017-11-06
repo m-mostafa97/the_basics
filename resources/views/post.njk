@@ -1,0 +1,147 @@
+{% extends 'header' %} {% block content %}
+<!--////////////// content //////////////-->
+
+
+
+<!--////////////// content//////////////-->
+<div class="container">
+	<div class="content">
+		<div class="row">
+			<!-- ///////////  the wide bar  ///////////-->
+
+		</div>
+		<br>
+		<!-- ///////////  the lift coulmn ///////////-->
+		<div class="row">
+			<div class="col-md-4">
+				<div class="row">
+					<div class="left">
+						<div class="alert alert-success" role="alert">الموضوع الأكثر مشاهده هذا الاسبوع</div>
+						<figure class="snip1577">
+							<img src="{{selectPost.avatar}}" />
+							<figcaption>
+								<h3>إقرأ المزيد</h3>
+							</figcaption>
+							<a href="/{{selectPost.id}}"></a>
+						</figure>
+						<p>{{selectPost.title}}</p>
+					</div>
+					<br>
+					<div class="left ">
+						<div class="mail tetx-center">
+							<i class="fa fa-4x fa-pencil" aria-hidden="true"></i><br><br>
+							<h3>
+								أفضل مدون هذا الشهر
+							</h3>
+							<h4>{{selectUser.fname}} &nbsp; {{selectUser.lname}}</h4>
+							<img src="{{selectUser.avatar}}" height="150px" width="120px">
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- ///////////  the right coulmn ///////////-->
+			<div class="col-sm-12 col-md-8">
+				<div class="row">
+					<!-- /////////// post ///////////-->
+
+
+					<div class="post-page">
+						<h3 class="lead" style="color: black">
+							{% if user %}
+							<div class="row">
+								<div class="col-md-6">
+									{{ form.open({params: {id: post.id}, action: 'PostController.destroy', class: 'form-inline' }) }} {{ csrfField }}
+									<button class="btn btn-danger" style="background-color: #d9534f !important"><i class="fa fa-trash-o fa-lg" aria-hidden="true">&nbsp;مسح</i></button> {{ form.close() }}
+								</div>
+								<div class="col-md-6">
+									{{ form.open({params: {id: post.id}, action: 'PostController.edit', class: 'form-inline' })}} {{ csrfField }}
+									<button class="btn btn-primary"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true">&nbsp;تعديل</i></button> {{ form.close() }}
+								</div>
+							</div>
+							{% endif %}
+							<h3 class="lead">{{post.title}}</h3>
+
+							<i class="fa fa-user fa-md" aria-hidden="true"> &nbsp; {{post.fname}} &nbsp; {{post.lname}} </i><br>
+							<i class="fa fa-md fa-clock-o" aria-hidden="true">&nbsp;&nbsp;{{post.created_at}}</i><br><br>
+							<h5 style="word-wrap: break-word;">{{post.content}}</h5><br>
+							<hr>
+
+
+							<div id="social"> شارك التدوينه على : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a class="facebookBtn smGlobalBtn" href="#"></a>
+								<a class="twitterBtn smGlobalBtn" href="#"></a>
+								<a class="googleplusBtn smGlobalBtn" href="#"></a>
+								<a class="linkedinBtn smGlobalBtn" href="#"></a>
+								<a class="pinterestBtn smGlobalBtn" href="#"></a>
+								<a class="tumblrBtn smGlobalBtn" href="#"></a>
+								<a class="rssBtn smGlobalBtn" href="#"></a>
+							</div>
+							<hr>
+					</div>
+
+					<br>
+
+					<div class="post-page">
+						{% for comment in comments %}
+						<div class="comment">
+
+							<div class="row" style="height: 100px;">
+								<div class="col-md-10" style="height: 100px;">
+									<div style="background-color: #EEE; height: 100%; padding: 20px;">{{comment.cotent}}</div>
+								</div>
+								<div class="col-md-2">
+									<img src="{{comment.avatar}}" style="border-radius: 50%;height: 50px;width: 50px;">
+									<h6>{{comment.fname}} {{comment.lname}}</h6>
+								</div>
+							</div>
+							<hr>
+						</div>
+						{% endfor %} {% if user %} {{ form.open({action: 'CommentController.create', files: true}) }} {{ csrfField }}
+						<h3>أضف تعليق :</h3>
+						<textarea name="comment" required></textarea>
+						<input type="hidden" name="comment_id" value='{{post.id}}' required>
+						<button class="btn btn-primary" type="submit">أرسال</button> {{ form.close() }}
+
+					</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+</div>
+
+
+<!--////////////// footer//////////////-->
+<div class="contain most footer row">
+	<div class="container">
+		<div class="text-center">
+			<div class="col-sm-6 col-md-6 lead">
+				<h6>لنكن على تواصل</h6>
+				<img src="images/facebook.svg" height="50px" width="50px">
+				<img src="images/linkedin.svg" height="50px" width="50px">
+				<img src="images/twitter.svg" height="50px" width="50px">
+				<img src="images/google-plus.svg" height="50px" width="50px">
+			</div>
+			<div class="col-sm-6 col-md-6 text-t"> <span>الرئيسيه - من نحن - السياسه والخصوصيه - عنوان الشركه</span>
+				<br> <span>جميع الحقوق محفوظه للشركه 2017</span>
+				<br> <span>إنضم كشريك - إنضم كمحاضر </span>
+			</div>
+		</div>
+	</div>
+</div>
+<div>
+	<!--MY jquery FILE-->
+	<script src="js/jquery-3.2.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+	<!--Bootstrap-->
+	<script src="js/bootstrap.min.js"></script>
+	<!--MY PLUGINS FILES-->
+	<script src="js/script.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+</div>
+
+</body>
+
+</html>
+{% endblock %}

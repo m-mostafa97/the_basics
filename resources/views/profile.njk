@@ -1,0 +1,62 @@
+{% extends 'header' %}
+{% block content%}
+	<!--////////////// log in & out  //////////////-->
+	<div class="container">
+		<div class="create create2">
+			<div class="form">
+				<div><img src="{{user.avatar}}" class="img-circle" style="margin-right: 150px; width: 200px; height: 200px;"></div>
+				<h1>Name: {{user.fname}} {{user.lname}}</h1>
+				<h1>Email: {{user.email}}</h1>
+				<h1>Roles: 
+					{% for r in role %}
+					{{r.name}}
+					{% endfor %}
+				</h1>
+				<h1>Number Of Posts : {{num}} </h1>
+				{% for post in posts%}
+				<a href="/{{post.id}}">
+					<h2 class="alert-success"> {{post.title}} </h2>
+				</a>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+	<!--////////////// footer//////////////-->
+	<div class="contain most footer row">
+		<div class="container">
+			<div class="text-center">
+				<div class="col-sm-6 col-md-6 lead">
+					<h6>لنكن على تواصل</h6>
+					<img src="images/facebook.svg" height="50px" width="50px">
+					<img src="images/linkedin.svg" height="50px" width="50px">
+					<img src="images/twitter.svg" height="50px" width="50px">
+					<img src="images/google-plus.svg" height="50px" width="50px">
+				</div>
+				<div class="col-sm-6 col-md-6 text-t"> <span>الرئيسيه - من نحن - السياسه والخصوصيه - عنوان الشركه</span>
+					<br> <span>جميع الحقوق محفوظه للشركه 2017</span>
+					<br> <span>إنضم كشريك - إنضم كمحاضر </span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div>
+		<!--MY jquery FILE-->
+		<script src="js/jquery-3.2.0.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+		<!--Bootstrap-->
+		<script src="js/bootstrap.min.js"></script>
+		<!--MY PLUGINS FILES-->
+		<script src="js/script.js"></script>
+		<script src="js/owl.carousel.min.js"></script>
+
+	</div>
+</body>
+
+</html>
+{% endblock %}

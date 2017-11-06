@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!---------------------MAIN META RULEZ-------------------->
+	{% block style %}
+	<meta charset="UTF-8">
+	<title>THE BASICS</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!--BOOTSTRAP-->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<!--FONT AWESOME-->
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<!--slider-->
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+	<!--HTML5 SHIV if lt IE 9-->
+	<script src="js/html5shiv.min.js"></script>
+	<!--fonts-->
+	<link href="https://fonts.googleapis.com/css?family=Cairo:700" rel="stylesheet">
+	<link src="Fonts/NotoKufiArabic-Regular.ttf" rel="stylesheet">
+	<!--MY CSS FILE-->
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/hover-min.css">
+	<!-----------------------[endif]---------------------------->
+	{% endblock %}
+</head>
+
+<body>
+	<!--////////////// navbar top//////////////-->
+	<div class="top">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" onclick="myFunction(this)"> <span class="sr-only">Toggle navigation</span> <span class="bar1"></span> <span class="bar2"></span> <span class="bar3"></span> </button>
+					<div class="navbar-header">
+						<a class="navbar-brand" href="#"> <img alt="Brand" src="images/logo.png"> </a>
+					</div>
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<div class="right">
+						<ul class="nav navbar-nav navbar-right">
+							{% if user %}
+							<li>
+								<a href="/signout"> <i class="fa  fa-sign-out fa-lg" aria-hidden="true"></i>&nbsp;تسجيل الخروج</a>
+							</li>
+							<li>
+								<a href="/create"> <i class="fa fa-plus fa-lg" aria-hidden="true"></i>&nbsp;انشئ منشور</a>
+							</li>
+							<li>
+								<a href="/profile"> <i class="fa fa-user fa-lg" aria-hidden="true"></i>&nbsp;{{user.fname}} {{user.lname}}</a>
+							</li>
+
+							{% else %}
+							<li>
+								<a href="/login"> <i class="fa fa-sign-in fa-lg" aria-hidden="true"></i> &nbsp; تسجيل الدخول</a>
+							</li>
+							<li>
+								<a href="/signup"> <i class="fa fa-user-plus fa-lg" aria-hidden="true"></i>&nbsp; عضو جديد</a>
+							</li>
+							{% endif %}
+						</ul>
+						<form class="navbar-form navbar-right">
+							<div class="form-group">
+								 {{ form.open({action: 'PostController.index'}) }}
+								<button type="submit" class="btn btn-default">بحث</button>
+								<input type="search" name="search" class="form-control" placeholder="إبحث فى المدونه">
+								{{ form.close() }}
+							</div>
+						</form>
+					</div>
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>
+			<!-- /.container-fluid -->
+		</nav>
+	</div>
+	<!--////////////// navbar buttom//////////////-->
+	<div class="container-fluid">
+		<!-- Navigation -->
+		<div class="row">
+			<nav class="navbar navbar-inverse" role="navigation">
+				<div class="container-fluid">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <h3>   تصفح أقسام الموقع  </h3>
+                        &nbsp; <i class="fa fa-angle-double-down fa-lg" aria-hidden="true"></i>
+                     </button>
+					</div>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse navbar-ex1-collapse">
+						<ul class="nav navbar-nav js-nav-add-active-class navbar-right">
+							<li><a href="/?category=artical">مقالات</a></li>
+							<li><a href="/?category=design">تصميم</a></li>
+							<li><a href="/?category=programming">برمجه</a></li>
+							<li><a href="/?category=android">اندرويد</a></li>
+							<li><a href="/?category=linux">لينكس</a></li>
+							<li><a href="/">حصريات</a></li>
+						</ul>
+					</div>
+					<!-- /.navbar-collapse -->
+				</div>
+			</nav>
+		</div>
+	</div>
+	<br>
+	<br>
+	<!--////////////// error //////////////-->
+	{% if error %}
+	<div class="alert alert-danger text-center lead">{{error}}</div>
+	<br>
+	<br> {% endif %} {% if login %}
+	<div class="alert alert-danger text-center lead">{{login}}</div>
+	<br>
+	<br> {% endif %} {% if e %}
+	<div class="alert alert-danger text-center lead">{{e}}</div>
+	<br>
+	<br> {% endif %}
+
+	<!--////////////// social media //////////////-->
+	<div class="container ">
+		<div class="social-media">
+			<div class="row">
+				<a href="/facebook/login">
+					<div class="col-md-3 social face">
+						<i class="fa fa-3x fa-facebook-official" aria-hidden="true"></i><br> إنضم لصفحتنا على الفيسبوك
+					</div>
+				</a>
+				<div class="col-md-3 social twitter">
+					<i class="fa fa-3x fa-twitter-square" aria-hidden="true"></i><br> تابعنا على تويتر
+				</div>
+				<div class="col-md-3 social linked">
+					<i class="fa fa-3x fa-linkedin-square" aria-hidden="true"></i><br> تابعنا على لينكد إن
+				</div>
+				<div class="col-md-3 social plus">
+					<i class="fa fa-3x fa-google-plus-official" aria-hidden="true"></i><br> إنضم لصفحتنا على الفيسبوك
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<!--////////////// slider//////////////-->
+	{% block content %}{% endblock %}
